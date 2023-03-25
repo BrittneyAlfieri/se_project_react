@@ -1,0 +1,12 @@
+@font-face {
+  src: url("/src/vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-family: "CabinetGrotesk-Bold";
+}
+
+.main__description {
+  margin-top: 40px;
+
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 20px;
+  line-height: 1.2px;
+}

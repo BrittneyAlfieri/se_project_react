@@ -1,7 +1,5 @@
-import "../blocks/app/app.css";
-import Header from "./Header";
-import Main from "./Main";
-import Footer from "./Footer";
+import "../blocks/app/App.css";
+import { Header, Main, Footer } from "./index";
 
 function App() {
   return (

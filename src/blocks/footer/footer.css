@@ -1,0 +1,15 @@
+@font-face {
+  src: url("/src/vendor/fonts/CabinetGrotesk-Medium.woff") format("woff");
+  font-family: "CabinetGrotesk-Medium";
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  margin-top: 171px;
+
+  font-family: "CabinetGrotesk-Medium";
+  line-height: 1.2;
+  font-size: 16px;
+}

@@ -3,10 +3,10 @@ import headerLogo from "../images/header-logo.svg";
 import headerUserImage from "../images/Avatar.svg";
 
 function Header() {
-  const currentDate = new Date().toLocaleString("default", {
-    month: "long",
-    day: "numberic",
-  });
+  // const currentDate = new Date().toLocaleString("default", {
+  //   month: "long",
+  //   day: "numeric",
+  // });
 
   return (
     <header className="header">
@@ -16,13 +16,11 @@ function Header() {
           src={headerLogo}
           alt="header logo image"
         />
-        <p className="header__date-location">
-          {/* {currentDate}, {weatherData.city} */}
-        </p>
+        <p className="header__date-location">June 15, New York</p>
       </div>
       <div className="header__right">
         <button className="header__button" type="button">
-          + add clothes
+          + Add clothes
         </button>
         <div className="header__username">Torrence Tegegne</div>
         <img
