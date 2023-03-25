@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "CabinetGrotesk-Extrabold";
+  src: url("/src/vendor/fonts/CabinetGrotesk-Extrabold.woff") format("woff");
+}
+
+.weathercard__container {
+  padding-top: 20px;
+}
+
+.weathercard__info {
+  z-index: 2;
+  position: absolute;
+  top: 13vh;
+  left: 8vh;
+  color: white;
+  margin: 0;
+
+  font-size: 36px;
+  font-family: "CabinetGrotesk-Extrabold";
+  line-height: 1.1;
+}
+
+.weathercard__image {
+  position: relative;
+  max-width: 1360px;
+}

@@ -1,0 +1,50 @@
+@font-face {
+  src: url("/src/vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-family: "CabinetGrotesk-Bold";
+}
+
+.card__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0;
+  margin-top: 34px;
+  list-style: none;
+  gap: 17px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  max-width: 325px;
+  max-height: 328px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 19px;
+  position: relative;
+}
+
+.card__image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 19px;
+}
+
+.card__name-wrapper {
+  display: flex;
+  justify-content: center;
+  min-width: 73px;
+  min-height: 24px;
+  background: white;
+  z-index: 2;
+  position: absolute;
+  top: 3vh;
+  border-radius: 4px;
+}
+
+.card__name {
+  margin-top: 12px;
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 1.2px;
+  color: rgba(0, 0, 0, 0.6);
+}
