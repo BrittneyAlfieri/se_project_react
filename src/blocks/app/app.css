@@ -1,3 +1,8 @@
+@font-face {
+  src: url("/src/vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-family: "CabinetGrotesk-Bold";
+}
+
 .page {
   max-width: 1440px;
   background-color: #f3f3f3;
@@ -8,4 +13,53 @@
   padding-left: 40px;
   padding-right: 41px;
   padding-top: 35px;
+}
+
+.modal__input {
+  border-bottom: 1px solid #000;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  padding-top: 8px;
+  padding-bottom: 4px;
+
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.modal__text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.modal__weather-description {
+  margin-top: 24px;
+
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.modal__radio-button {
+  margin-right: 8px;
+}
+
+.modal__radio-description {
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.5);
+
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 1.2;
 }
