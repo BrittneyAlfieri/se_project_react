@@ -2,11 +2,11 @@ import React from "react";
 import headerLogo from "../images/header-logo.svg";
 import headerUserImage from "../images/Avatar.svg";
 
-function Header({ onCreateModal }) {
-  // const currentDate = new Date().toLocaleString("default", {
-  //   month: "long",
-  //   day: "numeric",
-  // });
+function Header({ onCreateModal, currentLocation }) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <header className="header">
@@ -16,7 +16,9 @@ function Header({ onCreateModal }) {
           src={headerLogo}
           alt="header logo image"
         />
-        <p className="header__date-location">June 15, New York</p>
+        <p className="header__date-location">
+          {currentDate}, {currentLocation}
+        </p>
       </div>
       <div className="header__right">
         <button
