@@ -5,6 +5,8 @@ import {
   getForecastWeather,
   parseWeatherData,
   findCurrentLocation,
+  findWeatherCondition,
+  findTimeOfDay,
 } from "../utils/weatherapi";
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [location, setLocation] = useState("");
+  const [condition, setCondition] = useState("");
+  const [timeOfDay, setTimeOfDay] = useState(0);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -29,8 +33,12 @@ function App() {
     getForecastWeather().then((data) => {
       const temperature = parseWeatherData(data);
       const location = findCurrentLocation(data);
+      const condition = findWeatherCondition(data);
+      const time = findTimeOfDay(data);
       setTemp(temperature);
       setLocation(location);
+      setCondition(condition);
+      setTimeOfDay(time);
     });
   }, []);
 
@@ -38,7 +46,12 @@ function App() {
     <div className="page">
       <div className="page__wrapper">
         <Header onCreateModal={handleCreateModal} currentLocation={location} />
-        <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+        <Main
+          weatherTemp={temp}
+          onSelectCard={handleSelectedCard}
+          weatherCondition={condition}
+          setTime={timeOfDay}
+        />
         <Footer />
         {activeModal === "create" && (
           <ModalWithForm

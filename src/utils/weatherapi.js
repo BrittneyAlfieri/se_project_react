@@ -25,3 +25,20 @@ export const findCurrentLocation = (data) => {
   const location = data.name;
   return location;
 };
+
+export const findWeatherCondition = (data) => {
+  const weather = data.weather;
+  const weatherConditions = weather[0].main;
+
+  return weatherConditions;
+};
+
+export const findTimeOfDay = (data) => {
+  const sys = data.sys;
+  const sunrise = sys.sunrise;
+  const sunset = sys.sunset;
+
+  return sunrise & sunset;
+};
+
+console.log(findTimeOfDay);
