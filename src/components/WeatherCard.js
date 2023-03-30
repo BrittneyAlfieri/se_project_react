@@ -1,51 +1,66 @@
-import React from "react";
-import sunnyDay from "../images/day/sunny-day.png";
-import cloudyDay from "../images/day/cloudy-day.png";
-import fogDay from "../images/day/fog-day.png";
-import rainDay from "../images/day/rain-day.png";
-import snowDay from "../images/day/snow-day.png";
-import stormDay from "../images/day/storm-day.png";
-import sunnyNight from "../images/night/sunny-night.png";
-import cloudyNight from "../images/night/cloudy-night.png";
-import fogNight from "../images/night/fog-night.png";
-import rainNight from "../images/night/rain-night.png";
-import snowNight from "../images/night/snow-night.png";
-import stormNight from "../images/night/storm-night.png";
-
-const WeatherCard = ({
-  day,
-  type,
-  weatherTemp = "",
-  weatherCondition = { weatherCondition },
-  // setTime = { timeOfDay },
-}) => {
-  const currentDate = new Date().toLocaleString("default", {
-    month: "long",
-    day: "numeric",
-  });
-
+const WeatherCard = ({ day, type, weatherTemp = "" }) => {
   const weatherOptions = [
-    { url: sunnyDay, day: currentDate.day, type: "sunny" },
-    { url: cloudyDay, day: currentDate.day, type: "cloudy" },
-    { url: fogDay, day: currentDate.day, type: "fog" },
-    { url: rainDay, day: currentDate.day, type: "rain" },
-    { url: snowDay, day: currentDate.day, type: "snow" },
-    { url: stormDay, day: currentDate.day, type: "storm" },
-    { url: sunnyNight, day: currentDate.day, type: "sunny" },
-    { url: cloudyNight, day: currentDate.day, type: "cloudy" },
-    { url: fogNight, day: currentDate.day, type: "fog" },
-    { url: rainNight, day: currentDate.day, type: "rain" },
-    { url: snowNight, day: currentDate.day, type: "snow" },
-    { url: stormNight, day: currentDate.day, type: "storm" },
+    {
+      url: require("../images/day/sunny-day.png").default,
+      day: true,
+      type: "sunny",
+    },
+    {
+      url: require("../images/day/cloudy-day.png").default,
+      day: true,
+      type: "cloudy",
+    },
+    {
+      url: require("../images/day/fog-day.png").default,
+      day: true,
+      type: "fog",
+    },
+    {
+      url: require("../images/day/rain-day.png").default,
+      day: true,
+      type: "rain",
+    },
+    {
+      url: require("../images/day/snow-day.png").default,
+      day: true,
+      type: "snow",
+    },
+    {
+      url: require("../images/day/storm-day.png").default,
+      day: true,
+      type: "storm",
+    },
+    {
+      url: require("../images/night/sunny-night.png").default,
+      day: false,
+      type: "sunny",
+    },
+    {
+      url: require("../images/night/cloudy-night.png").default,
+      day: false,
+      type: "cloudy",
+    },
+    {
+      url: require("../images/night/fog-night.png").default,
+      day: false,
+      type: "fog",
+    },
+    {
+      url: require("../images/night/rain-night.png").default,
+      day: false,
+      type: "rain",
+    },
+    {
+      url: require("../images/night/snow-night.png").default,
+      day: false,
+      type: "snow",
+    },
+    {
+      url: require("../images/night/storm-night.png").default,
+      day: false,
+      type: "storm",
+    },
   ];
-
-  // const filterWeatherImages = weatherOptions.filter((image) => {
-  //   return image.type === weatherCondition && image.day === updateTime;
-  // });
-
-  // const updateTime = () => {
-  //   return setTime * 1000;
-  // };
 
   const imageSrc = weatherOptions.filter((i) => {
     return i.day === day && i.type === type;
@@ -56,7 +71,7 @@ const WeatherCard = ({
   return (
     <div className="weathercard__container">
       <p className="weathercard__info">{weatherTemp}°F</p>
-      <img className="weathercard__image" src={imageSrcUrl} />
+      <img src={imageSrcUrl} className="weathercard__image" />
     </div>
   );
 };
