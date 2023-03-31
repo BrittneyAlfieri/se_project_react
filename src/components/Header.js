@@ -2,7 +2,7 @@ import React from "react";
 import headerLogo from "../images/header-logo.svg";
 import headerUserImage from "../images/Avatar.svg";
 
-function Header({ onCreateModal, currentLocation }) {
+function Header({ onAddButtonClick, currentLocation }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -24,7 +24,7 @@ function Header({ onCreateModal, currentLocation }) {
         <button
           className="header__button"
           type="button"
-          onClick={onCreateModal}
+          onClick={onAddButtonClick}
         >
           + Add clothes
         </button>

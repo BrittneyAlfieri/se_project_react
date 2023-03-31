@@ -26,18 +26,25 @@ function App() {
     setSelectedCard(card);
   };
   useEffect(() => {
-    getForecastWeather().then((data) => {
-      const temperature = parseWeatherData(data);
-      const location = findCurrentLocation(data);
-      setTemp(temperature);
-      setLocation(location);
-    });
+    getForecastWeather()
+      .then((data) => {
+        const temperature = parseWeatherData(data);
+        const location = findCurrentLocation(data);
+        setTemp(temperature);
+        setLocation(location);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
     <div className="page">
       <div className="page__wrapper">
-        <Header onCreateModal={handleCreateModal} currentLocation={location} />
+        <Header
+          onAddButtonClick={handleCreateModal}
+          currentLocation={location}
+        />
         <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
         <Footer />
         {activeModal === "create" && (
@@ -75,7 +82,7 @@ function App() {
             <p className="modal__weather-description">
               Select the weather type:
             </p>
-            <div>
+            <div className="modal__radio-container">
               <div>
                 <input
                   className="modal__radio-button"
