@@ -54,13 +54,6 @@ export const latitude = 26.77136;
 export const longitude = -80.243454;
 export const APIkey = "771afaec0f6df78b3835fdd99865d655";
 
-export const processServerResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-};
-
 export const weatherOptions = [
   { url: sunnyDay, day: true, type: "sunny" },
   { url: cloudyDay, day: true, type: "cloudy" },
