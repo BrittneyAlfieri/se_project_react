@@ -1,6 +1,7 @@
 import React from "react";
 import headerLogo from "../images/header-logo.svg";
 import headerUserImage from "../images/Avatar.svg";
+import { ToggleSwitch } from "./index";
 
 function Header({ onAddButtonClick, currentLocation }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -21,6 +22,7 @@ function Header({ onAddButtonClick, currentLocation }) {
         </p>
       </div>
       <div className="header__right">
+        <ToggleSwitch />
         <button
           className="header__button"
           type="button"

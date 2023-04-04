@@ -1,9 +1,13 @@
 import React from "react";
+import { useContext } from "react";
 import { WeatherCard } from "./index";
 import { ItemCard } from "./index";
 import { defaultClothingItems } from "../utils/constants";
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherTemp, onSelectCard }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   const getWeatherType = () => {
     if (weatherTemp >= 86) {
       return "hot";
@@ -23,7 +27,11 @@ function Main({ weatherTemp, onSelectCard }) {
   return (
     <main className="main">
       <section className="main__info">
-        <WeatherCard day={true} type="sunny" weatherTemp={weatherTemp} />
+        <WeatherCard
+          day={true}
+          type="sunny"
+          weatherTemp={weatherTemp[currentTemperatureUnit]}
+        />
         <div className="main__container">
           <p className="main__description">
             Today is {weatherTemp}°F / You may want to wear:

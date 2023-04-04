@@ -5,3 +5,4 @@ export { default as ItemModal } from "./ItemModal";
 export { default as ModalWithForm } from "./ModalWithForm";
 export { default as WeatherCard } from "./WeatherCard";
 export { default as ItemCard } from "./ItemCard";
+export { default as ToggleSwitch } from "./ToggleSwitch";
