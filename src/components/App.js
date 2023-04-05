@@ -11,7 +11,7 @@ import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitCon
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [temp, setTemp] = useState(0);
+  const [temp, setTemp] = useState(null);
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
@@ -56,6 +56,7 @@ function App() {
           <Header
             onAddButtonClick={handleCreateModal}
             currentLocation={location}
+            onChange={handleToggleSwitchChange}
           />
 
           <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
