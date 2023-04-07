@@ -5,13 +5,14 @@
 
 .weathercard__container {
   padding-top: 20px;
+  position: relative;
 }
 
 .weathercard__info {
   z-index: 2;
   position: absolute;
-  top: 13vh;
-  left: 8vh;
+  left: 3vh;
+  top: 4vh;
   color: white;
   margin: 0;
 
@@ -21,6 +22,5 @@
 }
 
 .weathercard__image {
-  position: relative;
   max-width: 1360px;
 }

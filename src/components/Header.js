@@ -2,6 +2,7 @@ import React from "react";
 import headerLogo from "../images/header-logo.svg";
 import headerUserImage from "../images/Avatar.svg";
 import { ToggleSwitch } from "./index";
+import { NavLink } from "react-router-dom";
 
 function Header({ onAddButtonClick, currentLocation }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -12,11 +13,13 @@ function Header({ onAddButtonClick, currentLocation }) {
   return (
     <header className="header">
       <div className="header__left">
-        <img
-          className="header__logo"
-          src={headerLogo}
-          alt="header logo image"
-        />
+        <NavLink exact to="/">
+          <img
+            className="header__logo"
+            src={headerLogo}
+            alt="header logo image"
+          />
+        </NavLink>
         <p className="header__date-location">
           {currentDate}, {currentLocation}
         </p>
@@ -30,7 +33,9 @@ function Header({ onAddButtonClick, currentLocation }) {
         >
           + Add clothes
         </button>
-        <div className="header__username">Torrence Tegegne</div>
+        <NavLink exact to="/profile" className="header__username">
+          Torrence Tegegne
+        </NavLink>
         <img
           className="header__userimage"
           src={headerUserImage}

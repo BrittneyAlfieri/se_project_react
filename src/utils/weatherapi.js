@@ -20,7 +20,6 @@ export const parseWeatherData = (data) => {
   weather.temperature.F = `${Math.round(data.main.temp)}°F`;
   weather.temperature.C = `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`;
   // weather.type = getForecastWeather(parseInt(weather.temperature.F));
-  console.log(weather);
   return weather;
 };
 

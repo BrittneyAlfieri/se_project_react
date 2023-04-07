@@ -6,3 +6,6 @@ export { default as ModalWithForm } from "./ModalWithForm";
 export { default as WeatherCard } from "./WeatherCard";
 export { default as ItemCard } from "./ItemCard";
 export { default as ToggleSwitch } from "./ToggleSwitch";
+export { default as Profile } from "./Profile";
+export { default as SideBar } from "./SideBar";
+export { default as ClothesSection } from "./ClothesSection";

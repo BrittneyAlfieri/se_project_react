@@ -19,12 +19,12 @@ const ToggleSwitch = () => {
         <input
           type="checkbox"
           id="react-switch-new"
-          className="react-switch-checkbox"
+          className="react-switch-checkbox  react-switch-checkbox:checked "
           value={currentTemperatureUnit}
           onChange={handleToggleSwitchChange}
           checked={isChecked}
         ></input>
-        <span className={`react-switch-button`} />
+        <span className="react-switch-button" />
       </label>
     </div>
   );

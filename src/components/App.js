@@ -1,5 +1,12 @@
 import "../blocks/app/App.css";
-import { Header, Main, Footer, ModalWithForm, ItemModal } from "./index";
+import {
+  Header,
+  Main,
+  Footer,
+  ModalWithForm,
+  ItemModal,
+  Profile,
+} from "./index";
 import { useState, useEffect } from "react";
 import {
   getForecastWeather,
@@ -7,6 +14,7 @@ import {
   findCurrentLocation,
 } from "../utils/weatherapi";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
+import { Route } from "react-router-dom";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -58,9 +66,12 @@ function App() {
             currentLocation={location}
             onChange={handleToggleSwitchChange}
           />
-
-          <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
-
+          <Route exact path="/">
+            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+          </Route>
+          <Route exact path="/profile">
+            <Profile />
+          </Route>
           <Footer />
           {activeModal === "create" && (
             <ModalWithForm

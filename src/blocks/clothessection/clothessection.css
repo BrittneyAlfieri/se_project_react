@@ -1,0 +1,38 @@
+@font-face {
+  src: url("/src/vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-family: "CabinetGrotesk-Bold";
+}
+
+.clothessection__container {
+  display: flex;
+  max-width: 1015px;
+  margin-left: 117px;
+}
+
+.clothessection__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.clothessection__title {
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.clothessection__button {
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.clothessection__card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
