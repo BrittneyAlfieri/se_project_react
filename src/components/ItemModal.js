@@ -8,7 +8,7 @@ function ItemModal({ selectedCard, onClose }) {
         <button type="button" className="card__close" onClick={onClose}>
           <img src={closeButton}></img>
         </button>
-        <img src={selectedCard.link} className="card__modal-image" />
+        <img src={selectedCard.imgUrl} className="card__modal-image" />
         <div className="card__info">
           <div className="card__modal-name">{selectedCard.name}</div>
           <div className="card__modal-weather">

@@ -19,13 +19,14 @@ function Main({ weatherTemp, onSelectCard, cards }) {
 
   const weatherType = getWeatherType();
 
-  const filteredCards = cards.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
-  });
+  // const filteredCards = cards.filter((item) => {
+  //   return item.weather.toLowerCase() === weatherType;
+  // });
 
   if (!weatherTemp) {
     return null;
   }
+
   return (
     <main className="main">
       <section className="main__info">
@@ -36,12 +37,8 @@ function Main({ weatherTemp, onSelectCard, cards }) {
             want to wear:
           </p>
           <ul className="card__container">
-            {filteredCards.map((item) => (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onSelectCard={onSelectCard}
-              />
+            {cards.map((item) => (
+              <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
             ))}
           </ul>
         </div>

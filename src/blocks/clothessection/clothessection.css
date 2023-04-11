@@ -5,8 +5,10 @@
 
 .clothessection__container {
   display: flex;
+  flex-direction: column;
   max-width: 1015px;
-  margin-left: 117px;
+  margin-left: 50px;
+  margin-top: 17px;
 }
 
 .clothessection__header {
@@ -14,6 +16,7 @@
   flex-direction: row;
   align-items: center;
   gap: 20px;
+  margin-left: 40px;
 }
 
 .clothessection__title {
@@ -35,4 +38,5 @@
 .clothessection__card-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
 }
