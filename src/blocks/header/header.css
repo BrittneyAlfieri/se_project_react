@@ -50,7 +50,8 @@
 
 .header__username {
   margin-right: 12px;
-
+  text-decoration: none;
+  color: black;
   font-family: "CabinetGrotesk-Bold";
   font-size: 20px;
   line-height: 1.2;
