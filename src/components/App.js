@@ -15,6 +15,7 @@ import {
 } from "../utils/weatherapi";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import { Route } from "react-router-dom";
+import api from "../utils/api";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -22,6 +23,38 @@ function App() {
   const [temp, setTemp] = useState(null);
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
+
+  useEffect(() => {
+    getForecastWeather()
+      .then((data) => {
+        const temperature = parseWeatherData(data);
+        const location = findCurrentLocation(data);
+        setTemp(temperature);
+        setLocation(location);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    api
+      .getItemList()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // const handleAddItemSubmit = (item) => {
+  //   api.addItem(item).then((newItem) => {
+  //     setClothingItems([newItem, ...clothingItems]);
+  //     handleCloseModal();
+  //   });
+  // };
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -42,18 +75,14 @@ function App() {
     setSelectedCard(card);
   };
 
-  useEffect(() => {
-    getForecastWeather()
-      .then((data) => {
-        const temperature = parseWeatherData(data);
-        const location = findCurrentLocation(data);
-        setTemp(temperature);
-        setLocation(location);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // const handleCardDelete = (card) => {
+  //   api
+  //     .removeItem(card.id)
+  //     .then(() => {
+  //       setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <div className="page">
@@ -67,10 +96,14 @@ function App() {
             onChange={handleToggleSwitchChange}
           />
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              cards={clothingItems}
+              onSelectCard={handleSelectedCard}
+            />
           </Route>
           <Route exact path="/profile">
-            <Profile />
+            <Profile cards={clothingItems} onSelectCard={handleSelectedCard} />
           </Route>
           <Footer />
           {activeModal === "create" && (

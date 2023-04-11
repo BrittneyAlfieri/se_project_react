@@ -14,6 +14,9 @@ function ItemModal({ selectedCard, onClose }) {
           <div className="card__modal-weather">
             Weather type: {selectedCard.weather}
           </div>
+          <button type="submit" className="card__delete-button">
+            Delete item
+          </button>
         </div>
       </div>
     </div>
