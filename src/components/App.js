@@ -100,15 +100,10 @@ function App() {
               weatherTemp={temp}
               cards={clothingItems}
               onSelectCard={handleSelectedCard}
-              onClickDelete={handleCardDelete}
             />
           </Route>
           <Route exact path="/profile">
-            <Profile
-              cards={clothingItems}
-              onSelectCard={handleSelectedCard}
-              onClickDelete={handleCardDelete}
-            />
+            <Profile cards={clothingItems} onSelectCard={handleSelectedCard} />
           </Route>
           <Footer />
           {activeModal === "create" && (

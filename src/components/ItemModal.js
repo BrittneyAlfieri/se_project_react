@@ -17,7 +17,7 @@ function ItemModal({ selectedCard, onClose, onClickDelete }) {
             </div>
           </div>
           <button
-            onClickDelete={onClickDelete}
+            onClick={onClickDelete}
             type="submit"
             className="card__delete-button"
           >
