@@ -16,27 +16,26 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
   }, [isOpen]);
 
   function handleNameChange(e) {
-    setName({ name: e.target.value });
+    setName(e.target.value);
   }
 
   function handleImageUrlChange(e) {
-    setImageUrl({ imageUrl: e.target.value });
+    setImageUrl(e.target.value);
   }
 
   function handleWeatherChange(e) {
-    setWeather({ weather: e.target.value });
+    setWeather(e.target.value);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    onAddItem(setName, setImageUrl, setWeather);
+    onAddItem({ name, imageUrl, weather });
   }
 
   return (
     <ModalWithForm
       title="New garment"
-      // onClose={handleCloseModal}
-      onSubmit={handleSubmit}
+      onSubmit={() => handleSubmit()}
       buttonText="Add garment"
     >
       <div className="modal__text-container">

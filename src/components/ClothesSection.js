@@ -1,7 +1,7 @@
 import React from "react";
 import ItemCard from "./ItemCard";
 
-const ClothesSection = ({ cards, onSelectCard }) => {
+const ClothesSection = ({ cards, onSelectCard, onClickDelete }) => {
   return (
     <div className="clothessection__container">
       <div className="clothessection__header">
@@ -12,7 +12,12 @@ const ClothesSection = ({ cards, onSelectCard }) => {
       </div>
       <ul className="clothessection__card-container">
         {cards.map((item) => (
-          <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
+          <ItemCard
+            key={item.id}
+            item={item}
+            onSelectCard={onSelectCard}
+            onClickDelete={onClickDelete}
+          />
         ))}
       </ul>
     </div>

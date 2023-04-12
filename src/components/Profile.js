@@ -2,11 +2,15 @@ import React from "react";
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 
-const Profile = ({ onSelectCard, cards }) => {
+const Profile = ({ onSelectCard, cards, onClickDelete }) => {
   return (
     <div className="profile__container">
       <SideBar />
-      <ClothesSection cards={cards} onSelectCard={onSelectCard} />
+      <ClothesSection
+        cards={cards}
+        onSelectCard={onSelectCard}
+        onClickDelete={onClickDelete}
+      />
     </div>
   );
 };

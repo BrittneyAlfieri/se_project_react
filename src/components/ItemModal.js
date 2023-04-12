@@ -1,7 +1,7 @@
 import React from "react";
 import closeButton from "../images/item-close-button.png";
 
-function ItemModal({ selectedCard, onClose }) {
+function ItemModal({ selectedCard, onClose, onClickDelete }) {
   return (
     <div className="modal">
       <div className="modal__container">
@@ -16,7 +16,11 @@ function ItemModal({ selectedCard, onClose }) {
               Weather type: {selectedCard.weather}
             </div>
           </div>
-          <button type="submit" className="card__delete-button">
+          <button
+            onClickDelete={onClickDelete}
+            type="submit"
+            className="card__delete-button"
+          >
             Delete item
           </button>
         </div>

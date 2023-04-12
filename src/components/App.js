@@ -49,12 +49,12 @@ function App() {
       });
   }, []);
 
-  // const handleAddItemSubmit = (item) => {
-  //   api.addItem(item).then((newItem) => {
-  //     setClothingItems([newItem, ...clothingItems]);
-  //     handleCloseModal();
-  //   });
-  // };
+  const handleAddItemSubmit = (item) => {
+    api.addItem(item).then((newItem) => {
+      setClothingItems([newItem, ...clothingItems]);
+      handleCloseModal();
+    });
+  };
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -75,14 +75,14 @@ function App() {
     setSelectedCard(card);
   };
 
-  // const handleCardDelete = (card) => {
-  //   api
-  //     .removeItem(card.id)
-  //     .then(() => {
-  //       setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const handleCardDelete = (card) => {
+    api
+      .removeItem(card.id)
+      .then(() => {
+        setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="page">
@@ -100,22 +100,28 @@ function App() {
               weatherTemp={temp}
               cards={clothingItems}
               onSelectCard={handleSelectedCard}
+              onClickDelete={handleCardDelete}
             />
           </Route>
           <Route exact path="/profile">
-            <Profile cards={clothingItems} onSelectCard={handleSelectedCard} />
+            <Profile
+              cards={clothingItems}
+              onSelectCard={handleSelectedCard}
+              onClickDelete={handleCardDelete}
+            />
           </Route>
           <Footer />
           {activeModal === "create" && (
             <AddItemModal
               onClose={handleCloseModal}
-              isOpen={handleCreateModal}
+              onAddItem={handleAddItemSubmit}
             />
           )}
           {activeModal === "preview" && (
             <ItemModal
               selectedCard={selectedCard}
               onClose={handleCloseModal}
+              onClickDelete={handleCardDelete}
             ></ItemModal>
           )}
         </div>
