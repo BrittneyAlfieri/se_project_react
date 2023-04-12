@@ -15,16 +15,18 @@ const ToggleSwitch = () => {
 
   return (
     <div>
-      <label className="react-switch-label">
+      <label className="switch-label">
+        <p className={`switch-letter-F ${isChecked ? "active" : ""}`}>F</p>
+        <p className={`switch-letter-C ${isChecked ? "" : "active"}`}>C</p>
         <input
           type="checkbox"
           id="react-switch-new"
-          className="react-switch-checkbox  react-switch-checkbox:checked "
+          className="switch-checkbox"
           value={currentTemperatureUnit}
           onChange={handleToggleSwitchChange}
           checked={isChecked}
         ></input>
-        <span className="react-switch-button" />
+        <span className="switch-slider" />
       </label>
     </div>
   );

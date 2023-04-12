@@ -1,10 +1,37 @@
-.react-switch-checkbox {
-  height: 0;
-  width: 0;
-  visibility: hidden;
+@font-face {
+  src: url("/src/vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-family: "CabinetGrotesk-Bold";
 }
 
-.react-switch-label {
+.switch-letter-F {
+  font-family: "CabinetGrotesk-Bold";
+  line-height: 1.2;
+  font-size: 14px;
+  z-index: 2;
+  color: white;
+  position: absolute;
+  left: 15%;
+}
+
+.switch-letter-C {
+  z-index: 2;
+  font-family: "CabinetGrotesk-Bold";
+  line-height: 1.2;
+  font-size: 14px;
+  color: white;
+  position: absolute;
+  right: 15%;
+}
+
+.switch-letter-F.active {
+  color: #7e7e7e;
+}
+
+.switch-letter-C.active {
+  color: #7e7e7e;
+}
+
+.switch-label {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,7 +46,26 @@
   margin-right: 20px;
 }
 
-.react-switch-label .react-switch-button {
+.switch-checkbox {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 100px;
+
+  background-color: white;
+}
+
+.switch-slider:before {
   content: "";
   position: absolute;
   width: 28px;
@@ -28,13 +74,10 @@
   transition: 0.2s;
   background: black;
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+  transition: background-color 0.4s;
 }
 
-.react-switch-checkbox:checked + .react-switch-label .react-switch-button {
-  left: calc(100% - 2px);
-  transform: translateX(-100%);
-}
-
-.react-switch-label:active .react-switch-button {
-  width: 60px;
+.switch-checkbox:checked + .switch-slider:before {
+  left: calc(100% -2px);
+  transform: translateX(30px);
 }

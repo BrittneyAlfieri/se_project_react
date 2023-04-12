@@ -80,6 +80,7 @@ function App() {
       .removeItem(card.id)
       .then(() => {
         setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+        handleCloseModal();
       })
       .catch((err) => console.log(err));
   };
