@@ -104,7 +104,11 @@ function App() {
             />
           </Route>
           <Route exact path="/profile">
-            <Profile cards={clothingItems} onSelectCard={handleSelectedCard} />
+            <Profile
+              cards={clothingItems}
+              onSelectCard={handleSelectedCard}
+              onAddButtonClick={handleCreateModal}
+            />
           </Route>
           <Footer />
           {activeModal === "create" && (

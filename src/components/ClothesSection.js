@@ -1,12 +1,16 @@
 import React from "react";
 import ItemCard from "./ItemCard";
 
-const ClothesSection = ({ cards, onSelectCard }) => {
+const ClothesSection = ({ cards, onSelectCard, onAddButtonClick }) => {
   return (
     <div className="clothessection__container">
       <div className="clothessection__header">
         <div className="clothessection__title">Your items</div>
-        <button className="clothessection__button" type="button">
+        <button
+          onClick={onAddButtonClick}
+          className="clothessection__button"
+          type="button"
+        >
           + Add new
         </button>
       </div>
