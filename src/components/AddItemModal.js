@@ -35,7 +35,8 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
   return (
     <ModalWithForm
       title="New garment"
-      onSubmit={() => handleSubmit()}
+      onClose={onClose}
+      onSubmit={handleSubmit}
       buttonText="Add garment"
     >
       <div className="modal__text-container">
