@@ -63,7 +63,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             id="image-input"
             placeholder="Image URL"
             type="url"
-            name="link"
+            name="imageUrl"
             minLength="1"
             maxLength="30"
           ></input>

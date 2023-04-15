@@ -50,10 +50,13 @@ function App() {
   }, []);
 
   const handleAddItemSubmit = (item) => {
-    api.addItem(item).then((newItem) => {
-      setClothingItems([newItem, ...clothingItems]);
-      handleCloseModal();
-    });
+    api
+      .addItem(item)
+      .then((newItem) => {
+        setClothingItems([newItem, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleCreateModal = () => {
