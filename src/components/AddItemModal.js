@@ -65,7 +65,6 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             type="url"
             name="imageUrl"
             minLength="1"
-            maxLength="30"
           ></input>
         </label>
       </div>
