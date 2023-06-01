@@ -2,6 +2,14 @@ import React from "react";
 import closeButton from "../images/item-close-button.png";
 
 function ItemModal({ selectedCard, onClose, onClickDelete }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  
+  const isOwn = selectedCard.owner._id === currentUser._id;
+
+  
+  const itemDeleteButtonClassName = `card__delete-button ${isOwn ? 'card__delete-button_visible' : 'card__delete-button_hidden'}`;
+
   return (
     <div className="modal">
       <div className="modal__container">
@@ -23,7 +31,7 @@ function ItemModal({ selectedCard, onClose, onClickDelete }) {
           <button
             onClick={() => onClickDelete(selectedCard)}
             type="submit"
-            className="card__delete-button"
+            className={itemDeleteButtonClassName}
           >
             Delete item
           </button>

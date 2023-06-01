@@ -10,3 +10,4 @@ export { default as Profile } from "./Profile";
 export { default as SideBar } from "./SideBar";
 export { default as ClothesSection } from "./ClothesSection";
 export { default as AddItemModal } from "./AddItemModal";
+export {default as ProtectedRoute} from "./ProtectedRoute";

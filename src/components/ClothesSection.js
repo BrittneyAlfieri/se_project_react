@@ -2,6 +2,8 @@ import React from "react";
 import ItemCard from "./ItemCard";
 
 const ClothesSection = ({ cards, onSelectCard, onAddButtonClick }) => {
+
+  const userCards = cards.filter((item) => item.owner._id === currentUser._id)
   return (
     <div className="clothessection__container">
       <div className="clothessection__header">
@@ -15,7 +17,7 @@ const ClothesSection = ({ cards, onSelectCard, onAddButtonClick }) => {
         </button>
       </div>
       <ul className="clothessection__card-container">
-        {cards.map((item) => (
+        {userCards.map((item) => (
           <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
         ))}
       </ul>

@@ -67,3 +67,11 @@
   margin-right: 32px;
   cursor: pointer;
 }
+
+.card__delete-button_hidden {
+  display: none;
+}
+
+.card__delete-button_visible {
+  display: block;
+}

@@ -1,14 +1,65 @@
-import React from "react";
+import React, { useContext } from "react";
 import headerLogo from "../images/header-logo.svg";
-import headerUserImage from "../images/Avatar.svg";
 import { ToggleSwitch } from "./index";
 import { NavLink } from "react-router-dom";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function Header({ onAddButtonClick, currentLocation }) {
+function Header({ onAddButtonClick, currentLocation, loggedIn }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const currentUser = useContext(CurrentUserContext);
+
+  const renderUserAvatar = () => {
+    if (currentUser && currentUser.avatar) {
+      return (
+        <img
+          className="header__userimage"
+          src={currentUser.avatar}
+          alt="User's Avatar Image"
+        />
+      );
+    } else if (currentUser && currentUser.name) {
+      const initials = currentUser.name.charAt(0).toUpperCase();
+      return <div className="header__avatar-placeholder">{initials}</div>;
+    } else {
+      return null;
+    }
+  };
+
+  const renderAuthenticatedContent = () => {
+    return (
+      <>
+        <ToggleSwitch />
+        <button
+          className="header__button"
+          type="button"
+          onClick={onAddButtonClick}
+        >
+          + Add clothes
+        </button>
+        <NavLink exact to="/profile" className="header__username">
+          {currentUser.name}
+        </NavLink>
+        {renderUserAvatar()}
+      </>
+    );
+  };
+
+  const renderUnauthenticatedContent = () => {
+    return (
+      <>
+        <button className="header__button" type="button">
+          Sign Up
+        </button>
+        <button className="header__button" type="button">
+          Login
+        </button>
+      </>
+    );
+  };
 
   return (
     <header className="header">
@@ -26,21 +77,7 @@ function Header({ onAddButtonClick, currentLocation }) {
       </div>
       <div className="header__right">
         <ToggleSwitch />
-        <button
-          className="header__button"
-          type="button"
-          onClick={onAddButtonClick}
-        >
-          + Add clothes
-        </button>
-        <NavLink exact to="/profile" className="header__username">
-          Torrence Tegegne
-        </NavLink>
-        <img
-          className="header__userimage"
-          src={headerUserImage}
-          alt="User's Avatar Image"
-        />
+        {loggedIn ? renderAuthenticatedContent() : renderUnauthenticatedContent()}
       </div>
     </header>
   );
