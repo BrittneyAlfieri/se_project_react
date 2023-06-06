@@ -1,6 +1,6 @@
-export const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'http://localhost:3001';
 
-export const signup = (name, avatar, email, password) => {
+  const signup = (name, avatar, email, password) => {
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
       headers: {
@@ -10,7 +10,7 @@ export const signup = (name, avatar, email, password) => {
     });
   };
 
-  export const signin = (email, password) => {
+  const signin = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
       headers: {
@@ -20,7 +20,7 @@ export const signup = (name, avatar, email, password) => {
     });
   };
   
-  export const getContent = (token) => {
+  const getContent = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'GET',
       headers: {
@@ -29,4 +29,12 @@ export const signup = (name, avatar, email, password) => {
       }
     });
   };
-  
+
+  const auth = {
+    signup,
+    signin,
+    getContent
+  }
+
+
+export default auth;

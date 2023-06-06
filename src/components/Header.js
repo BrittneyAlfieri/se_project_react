@@ -4,7 +4,7 @@ import { ToggleSwitch } from "./index";
 import { NavLink } from "react-router-dom";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function Header({ onAddButtonClick, currentLocation, loggedIn }) {
+function Header({ onAddButtonClick, currentLocation, loggedIn, onLoginButton, onRegisterButton }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -51,10 +51,16 @@ function Header({ onAddButtonClick, currentLocation, loggedIn }) {
   const renderUnauthenticatedContent = () => {
     return (
       <>
-        <button className="header__button" type="button">
+        <button 
+        className="header__button" 
+        type="button"
+        onClick={onRegisterButton}>
           Sign Up
         </button>
-        <button className="header__button" type="button">
+        <button 
+        className="header__button" 
+        type="button"
+        onClick={onLoginButton}>
           Login
         </button>
       </>

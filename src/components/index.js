@@ -11,3 +11,5 @@ export { default as SideBar } from "./SideBar";
 export { default as ClothesSection } from "./ClothesSection";
 export { default as AddItemModal } from "./AddItemModal";
 export {default as ProtectedRoute} from "./ProtectedRoute";
+export {default as LoginModal} from "./LoginModal";
+export {default as RegisterModal} from "./RegisterModal";

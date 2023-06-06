@@ -7,6 +7,8 @@ import {
   ItemModal,
   Profile,
   ProtectedRoute,
+  LoginModal,
+  RegisterModal
 } from "./index";
 import { useState, useEffect } from "react";
 import {
@@ -28,7 +30,9 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState[null];
+  const [currentUser, setCurrentUser] = useState(null);
+
+
 
   useEffect(() => {
     getForecastWeather()
@@ -68,9 +72,25 @@ function App() {
     setActiveModal("create");
   };
 
+  const handleLoginModal = () => {
+    setActiveModal("login");
+  }
+
+  const handleRegisterModal = () => {
+    setActiveModal("register");
+  }
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
+
+  const handleLoginModalButton = () => {
+    setActiveModal("login");
+  }
+  
+  const handleRegisterModalButton = () => {
+    setActiveModal("register");
+  }
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -148,6 +168,8 @@ function App() {
           <div className="page__wrapper">
             <Header
               onAddButtonClick={handleCreateModal}
+              onLoginButton={handleLoginModal}
+              onRegisterButton={handleRegisterModal}
               currentLocation={location}
               onChange={handleToggleSwitchChange}
             />
@@ -180,6 +202,26 @@ function App() {
                 onClickDelete={handleCardDelete}
               ></ItemModal>
             )}
+            
+            {activeModal === "login" && (
+              <LoginModal
+                onRegisterButton={handleRegisterModalButton}
+                onClose={handleCloseModal}
+                onSignIn={handleSignIn}
+                activeModal={activeModal}
+              ></LoginModal>
+            )}
+            
+           
+            {activeModal === "register" && (
+              <RegisterModal
+                onLoginButton={handleLoginModalButton}
+                onClose={handleCloseModal}
+                onSignUp={handleSignUp}
+                activeModal={activeModal}
+              ></RegisterModal>
+            )}
+            
           </div>
         </CurrentTemperatureUnitContext.Provider>
       </div>

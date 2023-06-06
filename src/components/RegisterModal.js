@@ -1,11 +1,10 @@
+import ModalWithForm from "./ModalWithForm";
 
-
-const RegisterModal = (name, avatar, email, password) => {
+const RegisterModal = ({name, avatar, email, password, onClose}) => {
     return (
         <ModalWithForm
       title="Sign up"
       onClose={onClose}
-      onSubmit={handleSubmit}
       buttonText="Next"
     >
       <div className="modal__text-container">
@@ -66,3 +65,5 @@ const RegisterModal = (name, avatar, email, password) => {
     </ModalWithForm>
     )
 }
+
+export default RegisterModal;

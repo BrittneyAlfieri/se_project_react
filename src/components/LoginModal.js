@@ -1,11 +1,11 @@
+import ModalWithForm from "./ModalWithForm";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
-
-const LoginModal = () => {
+const LoginModal = ({onClose, onRegisterButton }) => {
     return (
-        <ModalWithForm
+    <ModalWithForm
       title="Log in"
       onClose={onClose}
-      onSubmit={handleSubmit}
       buttonText="Log in"
     >
       <div className="modal__text-container">
@@ -33,10 +33,10 @@ const LoginModal = () => {
             maxLength="30"
           ></input>
         </label>
-        
       </div>
-      
       
     </ModalWithForm>
     )
 }
+
+export default LoginModal;

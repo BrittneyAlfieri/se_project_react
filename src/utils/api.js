@@ -1,4 +1,4 @@
-import {BASE_URL} from "../auth";
+const BASE_URL = `https://my-json-server.typicode.com/BrittneyAlfieri/se_project_react `;
 
 const handleServerReponse = (res) => {
   if (res.ok) {
