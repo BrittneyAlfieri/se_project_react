@@ -1,7 +1,7 @@
 import ModalWithForm from "./ModalWithForm";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
-const LoginModal = ({onClose, onRegisterButton }) => {
+
+const LoginModal = ({onClose, activeModal }) => {
     return (
     <ModalWithForm
       title="Log in"

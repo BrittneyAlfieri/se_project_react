@@ -17,7 +17,7 @@ import {
   findCurrentLocation,
 } from "../utils/weatherapi";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
-import { Route} from "react-router-dom";
+import { Route,  useHistory} from "react-router-dom";
 import api from "../utils/api";
 import auth from "../auth";
 import CurrentUserContext from "../contexts/CurrentUserContext";
@@ -75,13 +75,16 @@ function App() {
   const handleLoginModal = () => {
     setActiveModal("login");
   }
+  const history = useHistory();
 
   const handleRegisterModal = () => {
     setActiveModal("register");
+    history.push("/signup");
   }
 
   const handleCloseModal = () => {
     setActiveModal("");
+    history.push("/");
   };
 
   const handleLoginModalButton = () => {
@@ -173,6 +176,29 @@ function App() {
               currentLocation={location}
               onChange={handleToggleSwitchChange}
             />
+    
+              <Route path="/signin">
+                <LoginModal
+                  onRegisterButton={handleRegisterModalButton}
+                  onClose={handleCloseModal}
+                  onSignIn={handleSignIn}
+                />
+              </Route>
+              <Route path="/signup">
+                <RegisterModal
+                  onLoginButton={handleLoginModalButton}
+                  onClose={handleCloseModal}
+                  onSignUp={handleSignUp}
+                />
+              </Route>
+              <Route exact path="/">
+              <Main
+                weatherTemp={temp}
+                cards={clothingItems}
+                onSelectCard={handleSelectedCard}
+              />
+            </Route>
+          
             <ProtectedRoute path="/profile">
               <Profile
                 cards={clothingItems}
@@ -181,13 +207,7 @@ function App() {
                 loggedIn = {loggedIn}
               />
             </ProtectedRoute>
-            <Route exact path="/">
-              <Main
-                weatherTemp={temp}
-                cards={clothingItems}
-                onSelectCard={handleSelectedCard}
-              />
-            </Route>
+
             <Footer />
             {activeModal === "create" && (
               <AddItemModal
@@ -208,19 +228,18 @@ function App() {
                 onRegisterButton={handleRegisterModalButton}
                 onClose={handleCloseModal}
                 onSignIn={handleSignIn}
-                activeModal={activeModal}
               ></LoginModal>
             )}
-            
-           
+          
+         
             {activeModal === "register" && (
               <RegisterModal
                 onLoginButton={handleLoginModalButton}
                 onClose={handleCloseModal}
                 onSignUp={handleSignUp}
-                activeModal={activeModal}
               ></RegisterModal>
             )}
+            
             
           </div>
         </CurrentTemperatureUnitContext.Provider>
