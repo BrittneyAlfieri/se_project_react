@@ -31,7 +31,7 @@ const addItem = (token, { name, weather, imageUrl }) => {
   }).then(handleServerReponse);
 };
 
-const removeItem = (token ,id) => {
+const removeItem = (token, id) => {
   return fetch(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
     headers: {

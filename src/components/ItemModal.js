@@ -1,14 +1,16 @@
 import React from "react";
 import closeButton from "../images/item-close-button.png";
+import CurrentUserContext from "../contexts/CurrentUserContext";
+import useContext from "react";
 
 function ItemModal({ selectedCard, onClose, onClickDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
-  
   const isOwn = selectedCard.owner._id === currentUser._id;
 
-  
-  const itemDeleteButtonClassName = `card__delete-button ${isOwn ? 'card__delete-button_visible' : 'card__delete-button_hidden'}`;
+  const itemDeleteButtonClassName = `card__delete-button ${
+    isOwn ? "card__delete-button_visible" : "card__delete-button_hidden"
+  }`;
 
   return (
     <div className="modal">

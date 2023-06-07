@@ -8,7 +8,7 @@ import {
   Profile,
   ProtectedRoute,
   LoginModal,
-  RegisterModal
+  RegisterModal,
 } from "./index";
 import { useState, useEffect } from "react";
 import {
@@ -17,7 +17,7 @@ import {
   findCurrentLocation,
 } from "../utils/weatherapi";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
-import { Route,  useHistory} from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import api from "../utils/api";
 import auth from "../auth";
 import CurrentUserContext from "../contexts/CurrentUserContext";
@@ -75,19 +75,17 @@ function App() {
   const handleLoginModal = () => {
     setActiveModal("login");
     history.push("/signin");
-  }
-  
+  };
 
   const handleRegisterModal = () => {
     setActiveModal("register");
     history.push("/signup");
-  }
+  };
 
   const handleCloseModal = () => {
     setActiveModal("");
     history.push("/");
   };
-
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -111,7 +109,8 @@ function App() {
   };
 
   const handleSignUp = (name, email, password, avatar) => {
-    auth.signup(name, avatar, email, password)
+    auth
+      .signup(name, avatar, email, password)
       .then(() => {
         handleCloseModal();
         setCurrentUser(name, avatar);
@@ -123,9 +122,10 @@ function App() {
   };
 
   const handleSignIn = (email, password) => {
-    auth.signin(email, password)
+    auth
+      .signin(email, password)
       .then((res) => {
-        const token = res.token; 
+        const token = res.token;
         localStorage.setItem("jwt", token);
         setCurrentUser(res.user);
         setLoggedIn(true);
@@ -133,13 +133,14 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  }
-  
+  };
+
   useEffect(() => {
     const tokenCheck = () => {
-      const jwt = localStorage.getItem('jwt');
+      const jwt = localStorage.getItem("jwt");
       if (jwt) {
-        auth.getContent(jwt)
+        auth
+          .getContent(jwt)
           .then((res) => {
             if (res) {
               setLoggedIn(true);
@@ -149,12 +150,10 @@ function App() {
             console.log(error);
           });
       }
-    }
-  
+    };
+
     tokenCheck();
   }, []);
-
-
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -163,7 +162,7 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="page__wrapper">
-          <Header
+            <Header
               onAddButtonClick={handleAddItemModal}
               onLoginButton={handleLoginModal}
               onRegisterButton={handleRegisterModal}
@@ -187,7 +186,7 @@ function App() {
               <RegisterModal
                 onLoginButton={handleLoginModal}
                 onClose={handleCloseModal}
-                onSignUp={handleSignUp}
+                onSubmit={handleSignUp}
               />
             </Route>
             <Route exact path="/">
@@ -233,13 +232,13 @@ function App() {
               <RegisterModal
                 onLoginButton={handleLoginModal}
                 onClose={handleCloseModal}
-                onSignUp={handleSignUp}
+                onSubmit={handleSignUp}
               />
             )}
           </div>
         </CurrentTemperatureUnitContext.Provider>
       </div>
-    </CurrentUserContext.Provider>  
+    </CurrentUserContext.Provider>
   );
 }
 
