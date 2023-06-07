@@ -78,4 +78,13 @@
   height: 36px;
   width: 65px;
   margin-top: 32px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal__link {
+  margin-left: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  font-size: 16px;
 }

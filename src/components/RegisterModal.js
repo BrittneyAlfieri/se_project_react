@@ -64,12 +64,14 @@ const RegisterModal = ({name, avatar, email, password, onClose, activeModal}) =>
             minLength="1"
           ></input>
         </label>
+        <div className="modal__footer">
         <button className="modal__button" type="submit">
             Next
           </button>
         <Link to="/signin" className="modal__link">
           or Login
         </Link>
+        </div>
       </div>
       
       

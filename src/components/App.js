@@ -31,8 +31,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-
-
+  const history = useHistory();
 
   useEffect(() => {
     getForecastWeather()
@@ -68,14 +67,16 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const handleCreateModal = () => {
+  const handleAddItemModal = () => {
     setActiveModal("create");
+    history.push("/");
   };
 
   const handleLoginModal = () => {
     setActiveModal("login");
+    history.push("/signin");
   }
-  const history = useHistory();
+  
 
   const handleRegisterModal = () => {
     setActiveModal("register");
@@ -87,13 +88,6 @@ function App() {
     history.push("/");
   };
 
-  const handleLoginModalButton = () => {
-    setActiveModal("login");
-  }
-  
-  const handleRegisterModalButton = () => {
-    setActiveModal("register");
-  }
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -169,78 +163,79 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="page__wrapper">
-            <Header
-              onAddButtonClick={handleCreateModal}
+          <Header
+              onAddButtonClick={handleAddItemModal}
               onLoginButton={handleLoginModal}
               onRegisterButton={handleRegisterModal}
               currentLocation={location}
               onChange={handleToggleSwitchChange}
             />
-    
-              <Route path="/signin">
-                <LoginModal
-                  onRegisterButton={handleRegisterModalButton}
-                  onClose={handleCloseModal}
-                  onSignIn={handleSignIn}
-                />
-              </Route>
-              <Route path="/signup">
-                <RegisterModal
-                  onLoginButton={handleLoginModalButton}
-                  onClose={handleCloseModal}
-                  onSignUp={handleSignUp}
-                />
-              </Route>
-              <Route exact path="/">
+            <Route path="/create">
+              <AddItemModal
+                onClose={handleCloseModal}
+                onAddItem={handleAddItemSubmit}
+              />
+            </Route>
+            <Route path="/signin">
+              <LoginModal
+                onRegisterButton={handleRegisterModal}
+                onClose={handleCloseModal}
+                onSignIn={handleSignIn}
+              />
+            </Route>
+            <Route path="/signup">
+              <RegisterModal
+                onLoginButton={handleLoginModal}
+                onClose={handleCloseModal}
+                onSignUp={handleSignUp}
+              />
+            </Route>
+            <Route exact path="/">
               <Main
                 weatherTemp={temp}
                 cards={clothingItems}
                 onSelectCard={handleSelectedCard}
               />
             </Route>
-          
             <ProtectedRoute path="/profile">
               <Profile
                 cards={clothingItems}
                 onSelectCard={handleSelectedCard}
-                onAddButtonClick={handleCreateModal}
-                loggedIn = {loggedIn}
+                onAddButtonClick={handleAddItemModal}
+                loggedIn={loggedIn}
               />
             </ProtectedRoute>
-
             <Footer />
+            {activeModal === "preview" && (
+              <ItemModal
+                selectedCard={selectedCard}
+                onClose={handleCloseModal}
+                onClickDelete={handleCardDelete}
+              />
+            )}
+
             {activeModal === "create" && (
               <AddItemModal
                 onClose={handleCloseModal}
                 onAddItem={handleAddItemSubmit}
               />
             )}
-            {activeModal === "preview" && (
-              <ItemModal
-                selectedCard={selectedCard}
-                onClose={handleCloseModal}
-                onClickDelete={handleCardDelete}
-              ></ItemModal>
-            )}
-            
+
             {activeModal === "login" && (
               <LoginModal
-                onRegisterButton={handleRegisterModalButton}
+                onRegisterButton={handleRegisterModal}
                 onClose={handleCloseModal}
                 onSignIn={handleSignIn}
-              ></LoginModal>
+              />
             )}
-          
-         
+
             {activeModal === "register" && (
               <RegisterModal
-                onLoginButton={handleLoginModalButton}
+                onLoginButton={handleLoginModal}
                 onClose={handleCloseModal}
                 onSignUp={handleSignUp}
-              ></RegisterModal>
+              />
             )}
-            
-            
           </div>
         </CurrentTemperatureUnitContext.Provider>
       </div>

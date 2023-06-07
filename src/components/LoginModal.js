@@ -1,7 +1,12 @@
 import ModalWithForm from "./ModalWithForm";
+import {Link} from "react-router-dom";
 
 
 const LoginModal = ({onClose, activeModal }) => {
+
+  
+
+  
     return (
     <ModalWithForm
       title="Log in"
@@ -33,6 +38,14 @@ const LoginModal = ({onClose, activeModal }) => {
             maxLength="30"
           ></input>
         </label>
+        <div className="modal__footer">
+        <button className="modal__button" type="submit">
+            Log in
+          </button>
+        <Link to="/signup" className="modal__link">
+          or Register
+        </Link>
+        </div>
       </div>
       
     </ModalWithForm>
