@@ -30,7 +30,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
 
   useEffect(() => {
@@ -112,9 +112,12 @@ function App() {
     auth
       .signup(name, avatar, email, password)
       .then(() => {
+        console.log("Signup successful");
         handleCloseModal();
-        setCurrentUser(name, avatar);
+        setCurrentUser({ name, avatar });
         setLoggedIn(true);
+        console.log("Updated currentUser:", currentUser);
+        console.log("Updated loggedIn:", loggedIn);
       })
       .catch((error) => {
         console.log(error);
@@ -127,8 +130,17 @@ function App() {
       .then((res) => {
         const token = res.token;
         localStorage.setItem("jwt", token);
-        setCurrentUser(res.user);
-        setLoggedIn(true);
+        console.log(token);
+
+        auth
+          .getContent(token)
+          .then((userData) => {
+            setCurrentUser(userData.name, userData.avatar);
+            setLoggedIn(true);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -139,6 +151,7 @@ function App() {
     const tokenCheck = () => {
       const jwt = localStorage.getItem("jwt");
       if (jwt) {
+        console.log(jwt);
         auth
           .getContent(jwt)
           .then((res) => {
@@ -168,6 +181,8 @@ function App() {
               onRegisterButton={handleRegisterModal}
               currentLocation={location}
               onChange={handleToggleSwitchChange}
+              loggedIn={loggedIn}
+              currentUser={currentUser}
             />
             <Route path="/create">
               <AddItemModal
@@ -179,7 +194,7 @@ function App() {
               <LoginModal
                 onRegisterButton={handleRegisterModal}
                 onClose={handleCloseModal}
-                onSignIn={handleSignIn}
+                onSubmit={handleSignIn}
               />
             </Route>
             <Route path="/signup">
@@ -224,7 +239,7 @@ function App() {
               <LoginModal
                 onRegisterButton={handleRegisterModal}
                 onClose={handleCloseModal}
-                onSignIn={handleSignIn}
+                onSubmit={handleSignIn}
               />
             )}
 

@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:3001";
 
-const signup = (name, avatar, email, password) => {
+const signup = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
@@ -10,7 +10,7 @@ const signup = (name, avatar, email, password) => {
   });
 };
 
-const signin = (email, password) => {
+const signin = ({ email, password }) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {

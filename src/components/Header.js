@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import headerLogo from "../images/header-logo.svg";
 import { ToggleSwitch } from "./index";
 import { NavLink } from "react-router-dom";
-import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function Header({ onAddButtonClick, currentLocation, loggedIn, onLoginButton, onRegisterButton }) {
+function Header({
+  onAddButtonClick,
+  currentLocation,
+  loggedIn,
+  onLoginButton,
+  onRegisterButton,
+  currentUser,
+}) {
+  console.log(currentUser);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
-  const currentUser = useContext(CurrentUserContext);
 
   const renderUserAvatar = () => {
     if (currentUser && currentUser.avatar) {
@@ -51,16 +56,18 @@ function Header({ onAddButtonClick, currentLocation, loggedIn, onLoginButton, on
   const renderUnauthenticatedContent = () => {
     return (
       <>
-        <button 
-        className="header__button" 
-        type="button"
-        onClick={onRegisterButton}>
+        <button
+          className="header__button"
+          type="button"
+          onClick={onRegisterButton}
+        >
           Sign Up
         </button>
-        <button 
-        className="header__button" 
-        type="button"
-        onClick={onLoginButton}>
+        <button
+          className="header__button"
+          type="button"
+          onClick={onLoginButton}
+        >
           Login
         </button>
       </>
@@ -82,8 +89,9 @@ function Header({ onAddButtonClick, currentLocation, loggedIn, onLoginButton, on
         </p>
       </div>
       <div className="header__right">
-        <ToggleSwitch />
-        {loggedIn ? renderAuthenticatedContent() : renderUnauthenticatedContent()}
+        {loggedIn
+          ? renderAuthenticatedContent()
+          : renderUnauthenticatedContent()}
       </div>
     </header>
   );
