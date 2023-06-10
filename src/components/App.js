@@ -50,6 +50,7 @@ function App() {
     api
       .getItemList()
       .then((items) => {
+        console.log(items);
         setClothingItems(items);
       })
       .catch((err) => {
@@ -116,6 +117,7 @@ function App() {
         handleCloseModal();
         setCurrentUser({ name, avatar });
         setLoggedIn(true);
+
         console.log("Updated currentUser:", currentUser);
         console.log("Updated loggedIn:", loggedIn);
       })
@@ -130,18 +132,23 @@ function App() {
       .then((res) => {
         const token = res.token;
         localStorage.setItem("jwt", token);
-        console.log(token);
 
         auth
           .getContent(token)
           .then((userData) => {
-            setCurrentUser(userData.name, userData.avatar);
+            debugger;
+            console.log(userData);
+            setCurrentUser({
+              name: userData.data.name,
+              avatar: userData.data.avatar,
+            });
             setLoggedIn(true);
           })
           .catch((error) => {
             console.log(error);
           });
       })
+
       .catch((error) => {
         console.log(error);
       });
@@ -151,12 +158,13 @@ function App() {
     const tokenCheck = () => {
       const jwt = localStorage.getItem("jwt");
       if (jwt) {
-        console.log(jwt);
         auth
           .getContent(jwt)
           .then((res) => {
             if (res) {
               setLoggedIn(true);
+              const { name, avatar, _id } = res.data;
+              setCurrentUser({ name, avatar, _id });
             }
           })
           .catch((error) => {
@@ -211,12 +219,12 @@ function App() {
                 onSelectCard={handleSelectedCard}
               />
             </Route>
-            <ProtectedRoute path="/profile">
+            <ProtectedRoute path="/profile" loggedIn={loggedIn}>
               <Profile
                 cards={clothingItems}
                 onSelectCard={handleSelectedCard}
                 onAddButtonClick={handleAddItemModal}
-                loggedIn={loggedIn}
+                currentUser={currentUser}
               />
             </ProtectedRoute>
             <Footer />
@@ -225,6 +233,7 @@ function App() {
                 selectedCard={selectedCard}
                 onClose={handleCloseModal}
                 onClickDelete={handleCardDelete}
+                currentUser={currentUser}
               />
             )}
 

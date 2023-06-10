@@ -1,6 +1,5 @@
-const BASE_URL = `https://my-json-server.typicode.com/BrittneyAlfieri/se_project_react `;
-
-const handleServerReponse = (res) => {
+const BASE_URL = "http://localhost:3001";
+const handleServerResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -13,7 +12,10 @@ const getItemList = () => {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(handleServerReponse);
+  }).then((res) => {
+    console.log(res);
+    return handleServerResponse(res);
+  });
 };
 
 const addItem = (token, { name, weather, imageUrl }) => {
@@ -28,17 +30,17 @@ const addItem = (token, { name, weather, imageUrl }) => {
       weather,
       imageUrl,
     }),
-  }).then(handleServerReponse);
+  }).then(handleServerResponse);
 };
 
-const removeItem = (token, id) => {
-  return fetch(`${BASE_URL}/items/${id}`, {
+const removeItem = (token, _id) => {
+  return fetch(`${BASE_URL}/items/${_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(handleServerReponse);
+  }).then(handleServerResponse);
 };
 
 const api = {

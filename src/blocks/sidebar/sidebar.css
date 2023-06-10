@@ -1,11 +1,37 @@
+@font-face {
+  src: url("/src/vendor/fonts/CabinetGrotesk-Bold.woff") format("woff");
+  font-family: "CabinetGrotesk-Bold";
+}
+
 .sidebar__userInfo {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
 }
 
 .sidebar__userimage {
   min-width: 56px;
   min-height: 56px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.sidebar__profile {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.sidebar__button {
+  font-size: 20px;
+  font-family: "CabinetGrotesk-Bold";
+  line-height: 1.2;
+  border: none;
+  cursor: pointer;
 }

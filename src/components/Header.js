@@ -11,23 +11,24 @@ function Header({
   onRegisterButton,
   currentUser,
 }) {
-  console.log(currentUser);
+  const { name, avatar } = currentUser;
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const renderUserAvatar = () => {
-    if (currentUser && currentUser.avatar) {
+    if (avatar) {
       return (
         <img
           className="header__userimage"
-          src={currentUser.avatar}
+          src={avatar}
           alt="User's Avatar Image"
         />
       );
-    } else if (currentUser && currentUser.name) {
-      const initials = currentUser.name.charAt(0).toUpperCase();
+    } else if (name) {
+      const initials = name.charAt(0).toUpperCase();
       return <div className="header__avatar-placeholder">{initials}</div>;
     } else {
       return null;
@@ -46,7 +47,7 @@ function Header({
           + Add clothes
         </button>
         <NavLink exact to="/profile" className="header__username">
-          {currentUser.name}
+          {name}
         </NavLink>
         {renderUserAvatar()}
       </>

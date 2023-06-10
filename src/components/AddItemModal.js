@@ -100,6 +100,9 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           />
           <label className="modal__radio-description">Cold</label>
         </div>
+        <button className="modal__button" type="submit">
+          Add garment
+        </button>
       </div>
     </ModalWithForm>
   );

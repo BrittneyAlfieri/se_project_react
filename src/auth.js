@@ -1,5 +1,12 @@
 const BASE_URL = "http://localhost:3001";
 
+const handleServerResponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error ${res.status}`);
+};
+
 const signup = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
@@ -7,7 +14,7 @@ const signup = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  });
+  }).then(handleServerResponse);
 };
 
 const signin = ({ email, password }) => {
@@ -17,7 +24,7 @@ const signin = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  });
+  }).then(handleServerResponse);
 };
 
 const getContent = (token) => {
@@ -27,7 +34,7 @@ const getContent = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then(handleServerResponse);
 };
 
 const auth = {
