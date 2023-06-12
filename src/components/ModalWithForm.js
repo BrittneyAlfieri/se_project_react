@@ -15,7 +15,6 @@ const ModalWithForm = ({ children, title, name, onClose, onSubmit }) => {
         <h3 className="modal__title">{title}</h3>
         <form
           onSubmit={(e) => {
-            console.log("submitted");
             onSubmit(e);
           }}
         >

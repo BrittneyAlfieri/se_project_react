@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ModalWithForm from "./ModalWithForm";
 
-const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
+const AddItemModal = ({ isOpen, onAddItem, onClose, token }) => {
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
@@ -29,7 +29,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onAddItem({ name, imageUrl, weather });
+    onAddItem(token, { name, imageUrl, weather });
   }
 
   return (

@@ -31,6 +31,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+
   const history = useHistory();
 
   useEffect(() => {
@@ -58,9 +59,9 @@ function App() {
       });
   }, []);
 
-  const handleAddItemSubmit = (item) => {
+  const handleAddItemSubmit = (token, { name, weather, imageUrl }) => {
     api
-      .addItem(item)
+      .addItem(token, { name, weather, imageUrl })
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         handleCloseModal();

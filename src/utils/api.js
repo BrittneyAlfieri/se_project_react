@@ -19,11 +19,12 @@ const getItemList = () => {
 };
 
 const addItem = (token, { name, weather, imageUrl }) => {
+  console.log(token);
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name,
