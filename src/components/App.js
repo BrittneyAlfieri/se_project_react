@@ -53,7 +53,6 @@ function App() {
     api
       .getItemList()
       .then((items) => {
-        console.log(items);
         setClothingItems(items);
       })
       .catch((err) => {
@@ -116,9 +115,11 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const handleProfileUpdate = (name, avatar) => {
+  const handleProfileUpdate = ({ name, avatar }) => {
+    console.log("Name:", name);
+    console.log("Avatar:", avatar);
     api
-      .patchUserInfo(name, avatar)
+      .patchUserInfo(token, { name, avatar })
       .then(() => {
         handleCloseModal();
         setCurrentUser({ name, avatar });
@@ -243,6 +244,7 @@ function App() {
                 onSelectCard={handleSelectedCard}
                 onAddButtonClick={handleAddItemModal}
                 currentUser={currentUser}
+                onEditProfileButton={handleEditProfileModal}
               />
             </ProtectedRoute>
             <Footer />
@@ -284,6 +286,7 @@ function App() {
               <EditProfileModal
                 onClose={handleCloseModal}
                 onEditProfile={handleProfileUpdate}
+                token={token}
               />
             )}
           </div>

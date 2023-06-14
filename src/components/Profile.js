@@ -2,10 +2,16 @@ import React from "react";
 import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 
-const Profile = ({ onSelectCard, cards, onAddButtonClick, currentUser }) => {
+const Profile = ({
+  onSelectCard,
+  cards,
+  onAddButtonClick,
+  currentUser,
+  onEditProfileButton,
+}) => {
   return (
     <div className="profile__container">
-      <SideBar />
+      <SideBar onEditProfileButton={onEditProfileButton} />
       <ClothesSection
         cards={cards}
         onSelectCard={onSelectCard}

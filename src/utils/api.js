@@ -13,13 +13,11 @@ const getItemList = () => {
       "Content-Type": "application/json",
     },
   }).then((res) => {
-    console.log(res);
     return handleServerResponse(res);
   });
 };
 
 const addItem = (token, { name, weather, imageUrl }) => {
-  console.log(token);
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
@@ -44,11 +42,14 @@ const removeItem = (token, _id) => {
   }).then(handleServerResponse);
 };
 
-const patchUserInfo = ({ name, avatar }) => {
+const patchUserInfo = (token, { name, avatar }) => {
+  console.log("Request Payload:", { name, avatar });
+
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
   }).then(handleServerResponse);
