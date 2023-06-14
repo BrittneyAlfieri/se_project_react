@@ -22,7 +22,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose, token }) => {
   function handleImageUrlChange(e) {
     setImageUrl(e.target.value);
   }
-
+  
   function handleWeatherChange(e) {
     setWeather(e.target.value);
   }

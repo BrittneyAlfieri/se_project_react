@@ -44,10 +44,21 @@ const removeItem = (token, _id) => {
   }).then(handleServerResponse);
 };
 
+const patchUserInfo = ({ name, avatar }) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(handleServerResponse);
+};
+
 const api = {
   getItemList,
   addItem,
   removeItem,
+  patchUserInfo,
 };
 
 export default api;

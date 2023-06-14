@@ -9,6 +9,7 @@ import {
   ProtectedRoute,
   LoginModal,
   RegisterModal,
+  EditProfileModal,
 } from "./index";
 import { useState, useEffect } from "react";
 import {
@@ -31,6 +32,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [token, setToken] = useState("");
 
   const history = useHistory();
 
@@ -84,6 +86,10 @@ function App() {
     history.push("/signup");
   };
 
+  const handleEditProfileModal = () => {
+    setActiveModal("edit");
+  };
+
   const handleCloseModal = () => {
     setActiveModal("");
     history.push("/");
@@ -102,12 +108,24 @@ function App() {
 
   const handleCardDelete = (card) => {
     api
-      .removeItem(card.id)
+      .removeItem(token, card._id)
       .then(() => {
-        setClothingItems((cards) => cards.filter((c) => c.id !== card.id));
+        setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
         handleCloseModal();
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleProfileUpdate = (name, avatar) => {
+    api
+      .patchUserInfo(name, avatar)
+      .then(() => {
+        handleCloseModal();
+        setCurrentUser({ name, avatar });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleSignUp = (name, email, password, avatar) => {
@@ -137,8 +155,6 @@ function App() {
         auth
           .getContent(token)
           .then((userData) => {
-            debugger;
-            console.log(userData);
             setCurrentUser({
               name: userData.data.name,
               avatar: userData.data.avatar,
@@ -163,6 +179,7 @@ function App() {
           .getContent(jwt)
           .then((res) => {
             if (res) {
+              setToken(jwt);
               setLoggedIn(true);
               const { name, avatar, _id } = res.data;
               setCurrentUser({ name, avatar, _id });
@@ -235,6 +252,7 @@ function App() {
                 onClose={handleCloseModal}
                 onClickDelete={handleCardDelete}
                 currentUser={currentUser}
+                token={token}
               />
             )}
 
@@ -242,6 +260,7 @@ function App() {
               <AddItemModal
                 onClose={handleCloseModal}
                 onAddItem={handleAddItemSubmit}
+                token={token}
               />
             )}
 
@@ -258,6 +277,13 @@ function App() {
                 onLoginButton={handleLoginModal}
                 onClose={handleCloseModal}
                 onSubmit={handleSignUp}
+              />
+            )}
+
+            {activeModal === "edit" && (
+              <EditProfileModal
+                onClose={handleCloseModal}
+                onEditProfile={handleProfileUpdate}
               />
             )}
           </div>
