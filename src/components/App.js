@@ -172,6 +172,32 @@ function App() {
       });
   };
 
+  const handleLikeClick = ({ _id, isLiked, currentUser }) => {
+    console.log(_id, "item id");
+    console.log(currentUser, "currentUser");
+    const token = localStorage.getItem("jwt");
+    // Check if this card is now liked
+    isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          .addCardLike({ _id, currentUser }, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === _id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          .removeCardLike({ _id, currentUser }, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === _id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     const tokenCheck = () => {
       const jwt = localStorage.getItem("jwt");
@@ -236,6 +262,8 @@ function App() {
                 weatherTemp={temp}
                 cards={clothingItems}
                 onSelectCard={handleSelectedCard}
+                onCardLike={handleLikeClick}
+                currentUser={currentUser}
               />
             </Route>
             <ProtectedRoute path="/profile" loggedIn={loggedIn}>

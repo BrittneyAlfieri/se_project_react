@@ -28,7 +28,7 @@
   min-height: 24px;
   background: white;
   z-index: 2;
-  position: absolute;
+
   top: 3vh;
   border-radius: 4px;
 }
@@ -39,4 +39,30 @@
   font-size: 16px;
   line-height: 1.2px;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.card__button {
+  border: none;
+  width: 18px;
+  height: 15px;
+  padding: 0;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.card__heart {
+  cursor: pointer;
+  max-width: 18px;
+  max-height: 15px;
+}
+
+.card__name-wrapper {
+  justify-content: center;
+}
+
+.card__header {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 16px;
 }

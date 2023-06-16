@@ -4,7 +4,7 @@ import { WeatherCard } from "./index";
 import { ItemCard } from "./index";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, cards }) {
+function Main({ weatherTemp, onSelectCard, cards, onCardLike, currentUser }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const getWeatherType = () => {
@@ -26,6 +26,7 @@ function Main({ weatherTemp, onSelectCard, cards }) {
   if (!weatherTemp) {
     return null;
   }
+  // console.log(currentUser);
 
   return (
     <main className="main">
@@ -42,6 +43,8 @@ function Main({ weatherTemp, onSelectCard, cards }) {
                 key={item._id}
                 item={item}
                 onSelectCard={onSelectCard}
+                onCardLike={onCardLike}
+                currentUser={currentUser}
               />
             ))}
           </ul>

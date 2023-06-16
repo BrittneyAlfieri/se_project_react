@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import ModalWithForm from "./ModalWithForm";
 
-const EditProfileModal = ({ onClose, onEditProfile }) => {
+const EditProfileModal = ({ onClose, onEditProfile, token }) => {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 

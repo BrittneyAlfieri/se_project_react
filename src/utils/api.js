@@ -55,11 +55,35 @@ const patchUserInfo = (token, { name, avatar }) => {
   }).then(handleServerResponse);
 };
 
+const addCardLike = ({ _id }, token) => {
+  return fetch(`${BASE_URL}/items/${_id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ _id }),
+  }).then(handleServerResponse);
+};
+
+const removeCardLike = ({ _id }, token) => {
+  return fetch(`${BASE_URL}/items/${_id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ _id }),
+  }).then(handleServerResponse);
+};
+
 const api = {
   getItemList,
   addItem,
   removeItem,
   patchUserInfo,
+  addCardLike,
+  removeCardLike,
 };
 
 export default api;
