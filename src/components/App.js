@@ -172,16 +172,17 @@ function App() {
       });
   };
 
-  const handleLikeClick = ({ _id, isLiked, currentUser }) => {
-    console.log(_id, "item id");
-    console.log(currentUser, "currentUser");
+  const handleLikeClick = ({ _id, isLiked }) => {
+    console.log({ isLiked });
     const token = localStorage.getItem("jwt");
     // Check if this card is now liked
     isLiked
       ? // if so, send a request to add the user's id to the card's likes array
         api
-          .addCardLike({ _id, currentUser }, token)
+          .addCardLike({ _id }, token)
           .then((updatedCard) => {
+            updatedCard = updatedCard.data;
+
             setClothingItems((cards) =>
               cards.map((c) => (c._id === _id ? updatedCard : c))
             );
@@ -189,8 +190,9 @@ function App() {
           .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
         api
-          .removeCardLike({ _id, currentUser }, token)
+          .removeCardLike({ _id }, token)
           .then((updatedCard) => {
+            updatedCard = updatedCard.data;
             setClothingItems((cards) =>
               cards.map((c) => (c._id === _id ? updatedCard : c))
             );
@@ -273,6 +275,7 @@ function App() {
                 onAddButtonClick={handleAddItemModal}
                 currentUser={currentUser}
                 onEditProfileButton={handleEditProfileModal}
+                onCardLike={handleLikeClick}
               />
             </ProtectedRoute>
             <Footer />

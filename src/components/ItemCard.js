@@ -3,7 +3,9 @@ import solidcardheart from "../images/solid-card-heart.png";
 
 function ItemCard({ item, onSelectCard, onCardLike, currentUser }) {
   const isLiked = item.likes.some((item) => item.owner === currentUser._id);
-
+  console.log(item.likes, "likes");
+  console.log(currentUser, "currentUser");
+  console.log(item);
   const renderNotLiked = () => {
     return (
       <button className="card__button" onClick={() => onCardLike(item)}>

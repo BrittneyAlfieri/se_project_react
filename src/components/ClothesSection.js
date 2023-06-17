@@ -1,6 +1,11 @@
 import ItemCard from "./ItemCard";
 
-const ClothesSection = ({ cards, onSelectCard, onAddButtonClick }) => {
+const ClothesSection = ({
+  cards,
+  onSelectCard,
+  onAddButtonClick,
+  currentUser,
+}) => {
   return (
     <div className="clothessection__container">
       <div className="clothessection__header">
@@ -15,7 +20,12 @@ const ClothesSection = ({ cards, onSelectCard, onAddButtonClick }) => {
       </div>
       <ul className="clothessection__card-container">
         {cards.map((item) => (
-          <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
+          <ItemCard
+            key={item._id}
+            item={item}
+            onSelectCard={onSelectCard}
+            currentUser={currentUser}
+          />
         ))}
       </ul>
     </div>
