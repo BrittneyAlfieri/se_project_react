@@ -22,7 +22,7 @@ function Header({
     if (avatar) {
       return (
         <img
-          className="header__userimage"
+          className="header__userImage"
           src={avatar}
           alt="User's Avatar Image"
         />

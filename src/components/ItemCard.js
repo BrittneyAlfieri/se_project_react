@@ -1,14 +1,19 @@
 import cardheart from "../images/card-heart.png";
 import solidcardheart from "../images/solid-card-heart.png";
 
-function ItemCard({ item, onSelectCard, onCardLike, currentUser }) {
-  const isLiked = item.likes.some((item) => item.owner === currentUser._id);
-  console.log(item.likes, "likes");
-  console.log(currentUser, "currentUser");
-  console.log(item);
+function ItemCard({ item, onSelectCard, onCardLike, currentUser, loggedIn }) {
+  const isLiked = item.likes.some((item) => item === currentUser._id);
+
+  const itemLikeButtonClassName = `card__button ${
+    loggedIn ? "card__button-visible" : " card__button-hide"
+  }`;
+
   const renderNotLiked = () => {
     return (
-      <button className="card__button" onClick={() => onCardLike(item)}>
+      <button
+        className={itemLikeButtonClassName}
+        onClick={() => onCardLike(item, isLiked)}
+      >
         <img
           className="card__heart"
           src={cardheart}
@@ -20,7 +25,10 @@ function ItemCard({ item, onSelectCard, onCardLike, currentUser }) {
 
   const renderLiked = () => {
     return (
-      <button className="card__button" onClick={() => onCardLike(item)}>
+      <button
+        className={itemLikeButtonClassName}
+        onClick={() => onCardLike(item, isLiked)}
+      >
         <img
           className="card__heart"
           src={solidcardheart}

@@ -105,6 +105,11 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleSignOut = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+  };
+
   const handleCardDelete = (card) => {
     api
       .removeItem(token, card._id)
@@ -116,8 +121,6 @@ function App() {
   };
 
   const handleProfileUpdate = ({ name, avatar }) => {
-    console.log("Name:", name);
-    console.log("Avatar:", avatar);
     api
       .patchUserInfo(token, { name, avatar })
       .then(() => {
@@ -155,12 +158,13 @@ function App() {
 
         auth
           .getContent(token)
-          .then((userData) => {
+          .then((userData, event) => {
             setCurrentUser({
               name: userData.data.name,
               avatar: userData.data.avatar,
             });
             setLoggedIn(true);
+            handleCloseModal();
           })
           .catch((error) => {
             console.log(error);
@@ -172,13 +176,12 @@ function App() {
       });
   };
 
-  const handleLikeClick = ({ _id, isLiked }) => {
+  const handleLikeClick = ({ _id }, isLiked) => {
     console.log({ isLiked });
     const token = localStorage.getItem("jwt");
-    // Check if this card is now liked
-    isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        api
+
+    !isLiked
+      ? api
           .addCardLike({ _id }, token)
           .then((updatedCard) => {
             updatedCard = updatedCard.data;
@@ -188,8 +191,7 @@ function App() {
             );
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        api
+      : api
           .removeCardLike({ _id }, token)
           .then((updatedCard) => {
             updatedCard = updatedCard.data;
@@ -266,6 +268,7 @@ function App() {
                 onSelectCard={handleSelectedCard}
                 onCardLike={handleLikeClick}
                 currentUser={currentUser}
+                loggedIn={loggedIn}
               />
             </Route>
             <ProtectedRoute path="/profile" loggedIn={loggedIn}>
@@ -276,8 +279,10 @@ function App() {
                 currentUser={currentUser}
                 onEditProfileButton={handleEditProfileModal}
                 onCardLike={handleLikeClick}
+                signOut={handleSignOut}
               />
             </ProtectedRoute>
+
             <Footer />
             {activeModal === "preview" && (
               <ItemModal

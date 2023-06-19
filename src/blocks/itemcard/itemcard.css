@@ -50,6 +50,14 @@
   margin-top: 3px;
 }
 
+.card__button-visible {
+  display: block;
+}
+
+.card__button-hide {
+  display: none;
+}
+
 .card__heart {
   cursor: pointer;
   max-width: 18px;

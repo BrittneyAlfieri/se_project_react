@@ -9,8 +9,9 @@
 }
 
 .sidebar__userimage {
-  min-width: 56px;
-  min-height: 56px;
+  max-width: 56px;
+  max-height: 56px;
+  border-radius: 30px;
 }
 
 .sidebar {

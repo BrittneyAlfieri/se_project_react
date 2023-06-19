@@ -8,10 +8,15 @@ const Profile = ({
   onAddButtonClick,
   currentUser,
   onEditProfileButton,
+  signOut,
 }) => {
   return (
     <div className="profile__container">
-      <SideBar onEditProfileButton={onEditProfileButton} />
+      <SideBar
+        onEditProfileButton={onEditProfileButton}
+        signOut={signOut}
+        currentUser={currentUser}
+      />
       <ClothesSection
         cards={cards}
         onSelectCard={onSelectCard}

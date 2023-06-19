@@ -56,3 +56,9 @@
   font-size: 20px;
   line-height: 1.2;
 }
+
+.header__userImage {
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 30px;
+}

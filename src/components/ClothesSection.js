@@ -6,6 +6,8 @@ const ClothesSection = ({
   onAddButtonClick,
   currentUser,
 }) => {
+  const userCards = cards.filter((card) => card.owner === currentUser._id);
+
   return (
     <div className="clothessection__container">
       <div className="clothessection__header">
@@ -19,7 +21,7 @@ const ClothesSection = ({
         </button>
       </div>
       <ul className="clothessection__card-container">
-        {cards.map((item) => (
+        {userCards.map((item) => (
           <ItemCard
             key={item._id}
             item={item}
