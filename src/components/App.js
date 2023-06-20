@@ -20,7 +20,7 @@ import {
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import { Route, useHistory } from "react-router-dom";
 import api from "../utils/api";
-import auth from "../auth";
+import auth from "../utils/auth";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function App() {
@@ -76,12 +76,10 @@ function App() {
   };
 
   const handleLoginModal = () => {
-    setActiveModal("login");
     history.push("/signin");
   };
 
   const handleRegisterModal = () => {
-    setActiveModal("register");
     history.push("/signup");
   };
 
@@ -323,6 +321,7 @@ function App() {
                 onClose={handleCloseModal}
                 onEditProfile={handleProfileUpdate}
                 token={token}
+                currentUser={currentUser}
               />
             )}
           </div>

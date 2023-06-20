@@ -53,15 +53,10 @@ const LoginModal = ({ onClose, onSubmit }) => {
             maxLength="30"
           ></input>
         </label>
-        <div className="modal__footer">
-          <button className="modal__button" type="submit">
-            Log in
-          </button>
-          <Link to="/signup" className="modal__link">
-            or Register
-          </Link>
-        </div>
       </div>
+      <Link to="/signup" className="modal__link">
+        or Register
+      </Link>
     </ModalWithForm>
   );
 };

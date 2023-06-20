@@ -1,7 +1,14 @@
 import React from "react";
 import closeButton from "../images/close-button.png";
 
-const ModalWithForm = ({ children, title, name, onClose, onSubmit }) => {
+const ModalWithForm = ({
+  children,
+  title,
+  name,
+  onClose,
+  onSubmit,
+  buttonText = "",
+}) => {
   return (
     <div className={`modal modal_type_${name}`}>
       <div className="modal__content">
@@ -19,6 +26,9 @@ const ModalWithForm = ({ children, title, name, onClose, onSubmit }) => {
           }}
         >
           {children}
+          <button className="modal__button" type="submit">
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>

@@ -26,6 +26,7 @@ const RegisterModal = ({ onClose, onSubmit }) => {
       onClose={onClose}
       buttonText="Next"
       onSubmit={handleSubmit}
+      buttonText="Next"
     >
       <div className="modal__text-container">
         <label className="modal__label" id="name-label">
@@ -82,15 +83,10 @@ const RegisterModal = ({ onClose, onSubmit }) => {
             name="avatarUrl"
           ></input>
         </label>
-        <div className="modal__footer">
-          <button className="modal__button" type="submit">
-            Next
-          </button>
-          <Link to="/signin" className="modal__link">
-            or Login
-          </Link>
-        </div>
       </div>
+      <Link to="/signin" className="modal__link">
+        or Login
+      </Link>
     </ModalWithForm>
   );
 };

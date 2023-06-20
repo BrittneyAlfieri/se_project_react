@@ -22,7 +22,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose, token }) => {
   function handleImageUrlChange(e) {
     setImageUrl(e.target.value);
   }
-  
+
   function handleWeatherChange(e) {
     setWeather(e.target.value);
   }
@@ -100,9 +100,6 @@ const AddItemModal = ({ isOpen, onAddItem, onClose, token }) => {
           />
           <label className="modal__radio-description">Cold</label>
         </div>
-        <button className="modal__button" type="submit">
-          Add garment
-        </button>
       </div>
     </ModalWithForm>
   );
