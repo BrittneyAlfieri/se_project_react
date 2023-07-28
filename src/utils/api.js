@@ -1,7 +1,7 @@
 const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "deployed-backend-url"
-    : "http://localhost:3000";
+    : "api.wtwr.wildsurf.net";
 
 const handleServerResponse = (res) => {
   if (res.ok) {
