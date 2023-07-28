@@ -61,6 +61,7 @@ function App() {
   }, []);
 
   const handleAddItemSubmit = (token, { name, weather, imageUrl }) => {
+    console.log(token, "handleadditemsubmit");
     api
       .addItem(token, { name, weather, imageUrl })
       .then((newItem) => {

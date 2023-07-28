@@ -1,4 +1,8 @@
-const BASE_URL = "http://localhost:3001";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "deployed-backend-url"
+    : "http://localhost:3000";
+
 const handleServerResponse = (res) => {
   if (res.ok) {
     return res.json();
@@ -18,6 +22,7 @@ const getItemList = () => {
 };
 
 const addItem = (token, { name, weather, imageUrl }) => {
+  console.log(token, "api additem");
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
