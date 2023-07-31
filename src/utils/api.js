@@ -1,6 +1,6 @@
 const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "api.wtwr.wildsurf.net"
+    ? "https://api.wtwr.wildsurf.net"
     : "http://localhost:3001";
 
 const handleServerResponse = (res) => {
