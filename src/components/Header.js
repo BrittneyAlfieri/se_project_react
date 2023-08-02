@@ -27,8 +27,8 @@ function Header({
           alt="User's Avatar Image"
         />
       );
-    } else if (name) {
-      const initials = name.charAt(0).toUpperCase();
+    } else if (typeof name === "string" && name.trim() !== "") {
+      const initials = name.trim().charAt(0).toUpperCase();
       return <div className="header__avatar-placeholder">{initials}</div>;
     } else {
       return null;
