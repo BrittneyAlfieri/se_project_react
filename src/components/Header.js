@@ -19,6 +19,8 @@ function Header({
   });
 
   const renderUserAvatar = () => {
+    console.log("Name", name);
+    console.log("currentUser", currentUser);
     if (avatar) {
       return (
         <img

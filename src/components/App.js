@@ -135,13 +135,9 @@ function App() {
     auth
       .signup(name, avatar, email, password)
       .then(() => {
-        console.log("Signup successful");
         handleCloseModal();
-        setCurrentUser({ name, avatar });
+        setCurrentUser(name, avatar);
         setLoggedIn(true);
-
-        console.log("Updated currentUser:", currentUser);
-        console.log("Updated loggedIn:", loggedIn);
       })
       .catch((error) => {
         console.log(error);
